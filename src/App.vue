@@ -3,7 +3,7 @@
     <Header/>
 
     <v-main>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-main>
 
     <Footer/>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 import Header from './global/Header';
 import Footer from './global/Footer';
 
@@ -19,7 +18,6 @@ export default {
   name: 'App',
 
   components: {
-    HelloWorld,
     Header,
     Footer,
   },
