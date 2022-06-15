@@ -1,6 +1,6 @@
 <template>
   <div>
-    bookIndex
+    bookEdit
   </div>
 </template>
 
