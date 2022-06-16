@@ -94,7 +94,7 @@ export default {
   data() {
     return {
       book:'',
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      date: '',
       menu: false,
       modal: false,
       menu2: false,
@@ -117,6 +117,10 @@ export default {
       // `vm`を通じてコンポーネントインスタンスにアクセス
       vm.$nextTick(()=>{
         vm.book = vm.books[vm.$route.params.id]
+        if (vm.book.readDate) {vm.date = vm.book.readDate} 
+        else{
+          vm.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
+        }
       })
       
     })
