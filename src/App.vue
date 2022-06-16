@@ -8,6 +8,7 @@
         @add-book-list="addBook"
         @update-book-info="updateBookInfo"
         @delete-local-storage="deleteAll"
+        @delete-item = "removeBook"
         :books="books"
         ></router-view>
       </v-container>
@@ -64,9 +65,10 @@ export default {
       this.books.splice(e.id,1,updateInfo)
       this.saveBook()
     },
-    removeBook(arg){
-      this.books.splice(arg,1)//削除
+    removeBook(e){
+      this.books.splice(e.id,1)//削除
       this.saveBook()//セーブ
+      this.$router.push(`/`)
     },
     saveBook(){
       const parsed= JSON.stringify(this.books);
