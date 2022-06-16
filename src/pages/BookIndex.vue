@@ -1,11 +1,27 @@
 <template>
   <div>
-    <v-btn 
-    depressed
-    to="/search"
-    >
-      本を探す
-    </v-btn>
+    <v-row>
+      <v-col cols="1">
+        <v-btn 
+          depressed
+          to="/search"
+          >
+        本を探す
+        </v-btn>
+      </v-col>
+      <v-col cols="10">
+        <v-spacer></v-spacer>
+      </v-col>
+      <v-col cols="1">
+        <v-btn
+          depressed
+          color="error"
+          @click="deleteLocalStrorage"
+        >
+        delete
+        </v-btn>
+      </v-col>
+    </v-row>
     <v-row>
         <v-col
         cols="12"
@@ -61,6 +77,11 @@ export default {
       menu: false,
       modal: false,
       menu2: false,
+    }
+  },
+  methods: {
+    deleteLocalStrorage(){
+      this.$emit('delete-local-storage')
     }
   },
 };
