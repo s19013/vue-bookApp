@@ -9,6 +9,17 @@
               </v-col>
               <v-col cols="7">
                 <v-row>
+                  <v-col></v-col>
+                  <v-col>
+                    <v-btn
+                      depressed
+                      color="error"
+                      @click="deleteItem">
+                    delete
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <v-row>
                   <v-card-title>title:{{book.title}}</v-card-title>
                 </v-row>
                 <v-row>{{book.description}}</v-row>
@@ -107,6 +118,13 @@ export default {
         readDate:this.date,
         memo:this.book.memo
       })
+    },
+    deleteItem(){
+      if (window.confirm('wanna delete?')){
+          this.$emit('delete-item',{
+          id:this.$route.params.id
+        })
+      }
     }
   },
   //vueは非同期にdom更新をしている
