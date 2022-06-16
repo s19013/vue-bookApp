@@ -6,6 +6,7 @@
       <v-container>
         <router-view
         @add-book-list="addBook"
+        @update-book-info="updateBookInfo"
         :books="books"
         ></router-view>
       </v-container>
@@ -48,6 +49,19 @@ export default {
       this.saveBook()//セーブ
       //最後に追加したidのページに移動
       this.goToEditPage(this.books.slice(-1)[0].id)
+    },
+    updateBookInfo(e){
+      //まるっと書き換える
+      const updateInfo = {
+        id:e.id,
+        readDate:e.readDate,
+        memo:e.memo,
+        title:this.books[e.id].title,
+        image:this.books[e.id].image,
+        description:this.books[e.id].description
+      }
+      this.books.splice(e.id,1,updateInfo)
+      this.saveBook()
     },
     removeBook(arg){
       this.books.splice(arg,1)//削除
