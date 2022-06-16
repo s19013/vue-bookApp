@@ -13,13 +13,52 @@
                 </v-row>
                 <v-row>{{book.description}}</v-row>
                 <v-spacer class="my-2"></v-spacer>
-                <v-row>読んだ日:</v-row>
+                <v-row>
+                  <v-dialog
+                    ref="dialog"
+                    v-model="modal"
+                    :return-value.sync="date"
+                    persistent
+                    width="290px">
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="date"
+                          label="読んだ日:"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="date"
+                        scrollable
+                      >
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="modal = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.dialog.save(date)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-dialog>
+                </v-row>
                 <v-row>
                   <v-textarea
                     name="input-7-1"
                     label="感想"
                     value=""
-                    hint="Hint text"></v-textarea>
+                    hint="Hint text"
+                    v-model="book.memo"></v-textarea>
                 </v-row>
                 <v-row class="justify-center">
                   <v-card-actions>
@@ -31,7 +70,7 @@
                     </v-btn>
                     <v-btn
                       class="info"
-                      @click="editBookInfo"
+                      @click="updateBookInfo"
                     >
                       保存
                     </v-btn>
@@ -54,11 +93,21 @@ export default {
   },
   data() {
     return {
-      book:''
+      book:'',
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      menu: false,
+      modal: false,
+      menu2: false,
     }
   },
   methods: {
-    
+    updateBookInfo(){
+      this.$emit('update-book-info',{
+        id:this.$route.params.id,
+        readDate:this.date,
+        memo:this.book.memo
+      })
+    }
   },
   //vueは非同期にdom更新をしている
   // ナビゲーションガードのbeforeRouteEnter,更にvue.nextTick()を使ってdom更新が終わってから表示させる
