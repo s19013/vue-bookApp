@@ -71,7 +71,7 @@ export default {
   },
   methods:{
     addBookList(index){
-      console.log(index);
+      this.$emit('add-book-list',this.searchResults[index])
     },
     async search(keyword){
       this.searchResults = []
