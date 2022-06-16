@@ -5,7 +5,7 @@
         cols ="8"
         md ="5"
         >
-        <v-text-field label="" v-model ="keyword"></v-text-field>
+        <v-text-field label="" v-model = "keyword"></v-text-field>
         </v-col>
         <v-col 
         cols ="2"
@@ -13,7 +13,7 @@
           <v-btn
             depressed
             color="primary"
-            @click="search"
+            @click="search(keyword)"
           >
           search
           </v-btn>
@@ -74,16 +74,18 @@ export default {
       this.$emit('add-book-list',this.searchResults[index])
     },
     async search(keyword){
+
       this.searchResults = []
+      const baseUrl = 'https://www.googleapis.com/books/v1/volumes?'
 
       //クエリー作成
-      const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q='
       const params = {
-        q:`intitle:${keyword}`,
+        q: `intitle:${keyword}`,
         maxResults:40
       }
       const queryParams = new URLSearchParams(params)
-
+      console.log(queryParams.toString());
+      console.log(baseUrl+queryParams);
       //fetchでjson取得
       const response = await fetch(baseUrl + queryParams)
       .then(response => response.json())
