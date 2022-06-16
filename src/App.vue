@@ -7,6 +7,7 @@
         <router-view
         @add-book-list="addBook"
         @update-book-info="updateBookInfo"
+        @delete-local-storage="deleteAll"
         :books="books"
         ></router-view>
       </v-container>
@@ -70,6 +71,18 @@ export default {
     saveBook(){
       const parsed= JSON.stringify(this.books);
       localStorage.setItem(storage_key,parsed)
+    },
+    deleteAll(){
+      const isDeleted = 'deleteALL?'
+      if (window.confirm(isDeleted)) {
+        //削除処理
+        localStorage.setItem(storage_key,'');
+        localStorage.removeItem(storage_key)
+        this.books=[]
+        
+        //再読み込み
+        window.location.reload()
+      }
     },
     goToEditPage(id){
       this.$router.push(`/edit/${id}`)
