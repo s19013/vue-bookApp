@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import Header from '.components/global/Header';
-
+import Header from './components/global/Header';
 
 
 const storage_key='books'
