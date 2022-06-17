@@ -4,5 +4,5 @@ module.exports = defineConfig({
     'vuetify'
   ],
   outputDir : 'docs',
-  publicPath: '/vue-bookApp/'
+  publicPath: '/vue-bookApp'
 })
