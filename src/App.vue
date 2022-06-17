@@ -15,13 +15,12 @@
 
     </v-main>
 
-    <Footer/>
   </v-app>
 </template>
 
 <script>
 import Header from './global/Header';
-import Footer from './global/Footer';
+
 
 
 const storage_key='books'
@@ -29,7 +28,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    Footer,
+
   },
   data() {
     return {
