@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import BookIndex from '@/views/BookIndex.vue'
-import BookSearch from '@/views/BookSearch.vue'
-import BookEdit from '@/views/BookEdit.vue'
+import BookIndex from '../views/BookIndex.vue'
+import BookSearch from '../views/BookSearch.vue'
+import BookEdit from '../views/BookEdit.vue'
 
 
 Vue.use(Router)
