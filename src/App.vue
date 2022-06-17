@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Header from './global/Header';
+import Header from '.components/global/Header';
 
 
 
