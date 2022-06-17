@@ -3,6 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: [
     'vuetify'
   ],
-  outputDir: 'docs',
-  publicPath: '/vue-bookApp'
+  outputDir : 'docs',
+  assetsDir : './',
+  publicPath: './'
 })
